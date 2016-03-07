@@ -1,0 +1,78 @@
+body{ 
+    font-family: "Helvetica"; 
+	margin: 50px;
+	padding-bottom: 100px;
+}
+
+svg{ 
+    background-color: #fff; 
+    margin-bottom: 30px;
+}
+
+p{
+	font-size: 10pt;
+	font-family: "Helvetica";
+	width: 50%;
+	color: gray;
+	padding: 20px;
+}
+
+h1{
+	font-size: 30pt;
+	font-family: "Cambria";
+	color: #000;
+}
+
+h2{
+	font-size: 25pt;
+	font-family: "Cambria";
+	color: #000;
+}
+
+h3{
+	font-family: "Cambria";
+	font-size: 20pt;
+}
+
+#graph2014, #graph2015, #graph2013, #graph2012, #graph2011, #graph2010, #graph2009, #graph2008, #graph2007, #graph2006, #graph2004, #graph2003, #graph2002, #graph2001 {
+	float: left;
+	margin: auto;
+	width: 200px;
+}
+
+#goalsGraph {
+	padding-right: 100px;
+	float: left;
+	margin: auto;
+	width: 50%;
+}
+
+#goalsGraph p {
+	width: 70%
+}
+
+#percentageChange {
+	float: left;
+	margin: auto;
+	width: 40%;
+}
+
+#percentageChange p {
+	width: 70%;
+	padding-bottom: 0px;
+}
+
+
+.axis text {
+  	font: 10px "Helvetica";
+  	color: #C0C0C0;
+}
+
+.axis path {
+  	fill: none;
+  	stroke: #C0C0C0;
+  	shape-rendering: crispEdges;
+}
+.axis line {
+	stroke: #C0C0C0;
+}
