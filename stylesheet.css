@@ -1,12 +1,11 @@
-body{ 
+body {
     font-family: "Helvetica"; 
 	margin: 50px;
 	padding-bottom: 100px;
 }
-
-svg{ 
+svg { 
     background-color: #fff; 
-    margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
 p{
@@ -17,19 +16,19 @@ p{
 	padding: 20px;
 }
 
-h1{
+h1 {
 	font-size: 30pt;
 	font-family: "Cambria";
 	color: #000;
 }
 
-h2{
+h2 {
 	font-size: 25pt;
 	font-family: "Cambria";
 	color: #000;
 }
 
-h3{
+h3 {
 	font-family: "Cambria";
 	font-size: 20pt;
 }
@@ -41,9 +40,10 @@ h3{
 }
 
 #goalsGraph {
-	padding-right: 100px;
+	padding-right: 0px;
 	float: left;
 	margin: auto;
+	margin-top: 30px;
 	width: 50%;
 }
 
@@ -54,12 +54,22 @@ h3{
 #percentageChange {
 	float: left;
 	margin: auto;
-	width: 40%;
+	width: 35%;
+}
+
+#percentageChange svg {
+	margin-bottom: 0px;
 }
 
 #percentageChange p {
 	width: 70%;
-	padding-bottom: 0px;
+	padding-bottom: 50px;
+}
+
+#stanelyCup {
+	float: left;
+	margin: auto;
+	width: 100%;
 }
 
 
@@ -67,7 +77,6 @@ h3{
   	font: 10px "Helvetica";
   	color: #C0C0C0;
 }
-
 .axis path {
   	fill: none;
   	stroke: #C0C0C0;
