@@ -57,7 +57,7 @@ p{
 	width: 200px;
 }
 
-#goalsGraph {
+#goalsGraph, #PIMmins {
 	margin: auto;
 	margin-top: 30px;
     width:750px;

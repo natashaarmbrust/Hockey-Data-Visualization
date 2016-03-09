@@ -369,27 +369,49 @@ var PIMsvg = d3.select("#PIMmins").append("svg")
     .attr("width", 750)
     .attr("height",520);
 
-var g = svg.append("g");
+var g = PIMsvg.append("g");
 var t0 = new Date(2001);
 var tEnd = new Date(2014);
 var parseDate = d3.time.format("%Y");
 var padding = 70;
-var xScale = d3.time.scale().domain([t0, tEnd]).range([padding, width - padding]);
+var PIM_xScale = d3.time.scale().domain([t0, tEnd]).range([padding, width - padding]);
+
+var PIM_yScale = d3.scale.linear().domain([0, 2000]).range([height - padding, padding]);
+var PIM_xAxis = d3.svg.axis().scale(PIM_xScale).orient("bottom").ticks(14).tickFormat(d3.format("23d")).tickPadding(10);
+var PIM_yAxis = d3.svg.axis().scale(PIM_yScale).orient("left").ticks(10).tickPadding(10).tickFormat(d3.format("d"));
+var color = d3.scale.category10();
+
+var PIM_svgLayer1 = PIMsvg.append("g");
+var PIM_svgLayer2 = PIMsvg.append("g");
+var PIM_svgLayer3 = PIMsvg.append("g");
     
 d3.json("penaltyMins.json", function(error, data){
     if (error) {
 		console.log(error);
 	}
     for(var team_name in data){
-        
+        var line = d3.svg.line()
+            .x()
+            .y(function(d){return d[team_name]});
     }
 });
+PIMsvg.append("g").attr("transform", "translate(0, " + (height - padding) + ")").attr("class", "axis").call(PIM_xAxis).append("text").style("text-anchor", "middle").attr("x", (width - padding)/2).attr("y", padding);
+//.text("Year");;
+PIMsvg.append("g").attr("transform", "translate(" + padding + ",0)").attr("class", "axis").call(PIM_yAxis).append("text").attr("transform", "rotate(-90)").style("text-anchor", "middle").attr("x", -height/2).attr("y", -padding/1.5).text("Penalty Minutes");
+
+
 
 </script>
 <div id="stanelyCup">
 <h3>What predicts a Stanely Cup Winner?</h3>
 
-<p>Stanely Cup Winners have a good offense and defense throughout the season. We graphed Penality Kill Percentage versus Average Shots Per Game to understand the composition of a Stanely Cup Winner more. Penality Kill Percentage is a measure of a team's deffense. It is a measure of how well a team does when short a player compared to the opposing team. Average Shots Per Game is measuring the team's offense with the theory being you miss 100% of the shots you don't take.</p>
+<p>"Shots on goal and a good Penalty Kill are what define a good team", is something my father and I consistantly 
+preached even when I was playing hockey growing up.
+Stanely Cup Winners have a good offense and defense throughout the season. 
+We graphed Penality Kill Percentage versus Average Shots Per Game to understand the composition of a Stanely Cup Winner more. 
+Penality Kill Percentage is a measure of a team's deffense. 
+It is a measure of how well a team does when short a player compared to the opposing team. 
+Average Shots Per Game is measuring the team's offense with the theory being you miss 100% of the shots you don't take.</p>
 
 
 <div id="key"></div>
