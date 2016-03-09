@@ -19,7 +19,7 @@
 
     <h3>Which teams are winning now?</h3>
     <p> Before we dig into our theories, let's take a look at how some teams are doing compared to 15 years ago...</p>
-	<p>Teams that were on top 15 years ago are not necessarily having stellar seasons now. 
+	<p>Teams that were on top 15 years ago are not necessarily having stellar seasons now, as the league changes a lot over time.
     We graphed percentage wins for 2001 and 2014 in order to see the percentage change for each team.
     The ones highlighted have the greatest percent changes as per the key below...</p>
 
@@ -384,15 +384,88 @@ var color = d3.scale.category10();
 var PIM_svgLayer1 = PIMsvg.append("g");
 var PIM_svgLayer2 = PIMsvg.append("g");
 var PIM_svgLayer3 = PIMsvg.append("g");
-    
+
 d3.json("penaltyMins.json", function(error, data){
     if (error) {
 		console.log(error);
 	}
+    var yr_array = ["2001","2002","2003","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014"];
     for(var team_name in data){
+        data[team_name][10] = data[team_name][10] * (82/46);
+        var thing;
+        thing = data[team_name].map(function(_, idx){
+            return {x: yr_array[idx], y: data[team_name][idx] };
+        });
         var line = d3.svg.line()
-            .x()
-            .y(function(d){return d[team_name]});
+            .x(function(d) { 
+                var parseDate = d3.time.format("%Y");
+                var date = new Date("1-01-"+ d.x);
+                year = parseDate(date);
+                return xScale(year);})
+            .y(function(d){return PIM_yScale(d.y);});
+        
+        
+        
+        
+        
+        
+        
+        if(team_name == "Edmonton Oilers" || team_name == "Phoenix Coyotes" || team_name == "Toronto Maple Leafs" ){
+            PIMsvg.append("path").attr("d",line(thing))
+                .style("stroke", "#d1776d")
+                .style("fill", "none")
+                .style("stroke-opacity", ".7")
+                .style("stroke-width", 2);
+                
+                PIM_svgLayer2.append("text")
+				.attr("transform", "translate(" + (width - padding +3) + "," + PIM_yScale(data[team_name][12] -40) + ")")
+				.attr("text-anchor", "start")
+				.style("color", "#C0C0C0")
+				.style("font-size", "5pt")
+				.style("font-weight", "bold")
+				.text(team_name);
+        }
+        else if(team_name == "Anaheim Ducks" || team_name == "Tampa Bay Lightning" || team_name == "Winnipeg Jets"){
+
+			PIMsvg.append("path").attr("d", line(thing))
+				.style("stroke", "#598fbc")
+                .style("fill", "none")
+                .style("stroke-opacity", ".7")
+                .style("stroke-width", 2);
+
+				PIM_svgLayer2.append("text")
+				.attr("transform", "translate(" + (width - padding +3) + "," + PIM_yScale(data[team_name][12] + 40)  + ")")
+				.attr("text-anchor", "start")
+				.style("color", "#C0C0C0")
+				.style("font-size", "5pt")
+				.style("font-weight", "bold")
+				.text(team_name);
+        }
+        else if(team_name == "League Average"){
+            PIMsvg.append("path").attr("d", line(thing))
+				.style("stroke", "#FFAA00")
+                .style("fill", "none")
+                .style("stroke-opacity", ".7")
+                .style("stroke-width", 5);
+                				
+            PIM_svgLayer2.append("text")
+				.attr("transform", "translate(" + (width - padding +3) + "," + PIM_yScale(data[team_name][12] + 20) + ")")
+				.attr("text-anchor", "start")
+				.style("color", "#C0C0C0")
+				.style("font-size", "5pt")
+				.style("font-weight", "bold")
+				.text(team_name);
+        }
+        else{
+            PIMsvg.append("path").attr("d", line(thing))
+				.style("stroke", "#598fbc")
+                .style("fill", "none")
+                .style("stroke-opacity", ".2")
+                .style("stroke-width", 1);
+        
+        
+        
+        }
     }
 });
 PIMsvg.append("g").attr("transform", "translate(0, " + (height - padding) + ")").attr("class", "axis").call(PIM_xAxis).append("text").style("text-anchor", "middle").attr("x", (width - padding)/2).attr("y", padding);
@@ -403,7 +476,7 @@ PIMsvg.append("g").attr("transform", "translate(" + padding + ",0)").attr("class
 
 </script>
 <div id="stanelyCup">
-<h3>What predicts a Stanely Cup Winner?</h3>
+<h3>What predicts a Stanley Cup Winner?</h3>
 
 <p>"Shots on goal and a good Penalty Kill are what define a good team", is something my father and I consistantly 
 preached even when I was playing hockey growing up.
