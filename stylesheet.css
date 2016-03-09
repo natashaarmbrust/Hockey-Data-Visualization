@@ -1,4 +1,33 @@
+#body_wrapper{
+    width:1200px;
+    height:3000px;
+    margin-right:auto;
+    margin-left:auto;
+    border: 3px solid black;
+    border-radius:25px;
+    background-color:#fff;
+    
+}
+h1 {
+    text-align:center;
+	font-size: 45px;
+	font-family: 'Titillium Web', sans-serif;
+	color: #000;
+}
+h2 {
+	font-size: 25pt;
+	font-family: 'Titillium Web', sans-serif;
+	color: #000;
+    padding-left:30px;
+}
+h3 {
+	font-family: 'Titillium Web', sans-serif;
+    text-align:center;
+	font-size: 20pt;
+}
+
 body {
+    background-color:#FFFFF2;
     font-family: "Helvetica"; 
 	margin: 50px;
 	padding-bottom: 100px;
@@ -9,29 +38,18 @@ svg {
 }
 
 p{
-	font-size: 10pt;
+	font-size: 20px;
 	font-family: "Helvetica";
-	width: 50%;
 	color: gray;
-	padding: 20px;
+    margin:auto;
+    padding-left:30px;
+    padding-right:30px;
 }
 
-h1 {
-	font-size: 30pt;
-	font-family: "Cambria";
-	color: #000;
-}
 
-h2 {
-	font-size: 25pt;
-	font-family: "Cambria";
-	color: #000;
-}
 
-h3 {
-	font-family: "Cambria";
-	font-size: 20pt;
-}
+
+
 
 #graph2014, #graph2015, #graph2013, #graph2012, #graph2011, #graph2010, #graph2009, #graph2008, #graph2007, #graph2006, #graph2004, #graph2003, #graph2002, #graph2001 {
 	float: left;
@@ -40,11 +58,9 @@ h3 {
 }
 
 #goalsGraph {
-	padding-right: 0px;
-	float: left;
 	margin: auto;
 	margin-top: 30px;
-	width: 50%;
+    width:750px;
 }
 
 #goalsGraph p {
@@ -52,7 +68,7 @@ h3 {
 }
 
 #percentageChange {
-	float: left;
+    padding-top:30px;
 	margin: auto;
 	width: 35%;
 }

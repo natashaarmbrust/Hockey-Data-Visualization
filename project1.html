@@ -1,5 +1,6 @@
 <html>
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='stylesheet.css' rel='stylesheet' type='text/css' />
 <!-- Load the d3 libraries. -->
@@ -9,19 +10,21 @@
 </head>
 <body>
 
-<h1>The NHL has changed over the past couple years...</h1>
-<h2>Let's see how</h2>
+<div id="body_wrapper">
+    <h1> Trends in the NHL Over the Past 15 Years </h1>
+    <p> Ever since my father introduced me to hockey back in 2000 (age 6), it has become
+    a tradition to sit down together and watch our hometown Pittsburgh Penguins duke it out.
+    As time went on, we noticed some changes in the game, and found that the NHL was changing
+    as we grew older. We formed a few hypothesises, and now, we are going to put them to the test.</p>
 
-<h3>Which teams are winning now?</h3>
+    <h3>Which teams are winning now?</h3>
+    <p> Before we dig into our theories, let's take a look at how some teams are doing compared to 15 years ago...</p>
+	<p>Teams that were on top 15 years ago are not necessarily having stellar seasons now. 
+    We graphed percentage wins for 2001 and 2014 in order to see the percentage change for each team.
+    The ones highlighted have the greatest percent changes as per the key below...</p>
 
-	<p>Teams that were on top 15 years ago are not necessarily having stellar seasons now. We graphed percentage wins for 2001 and 2014 in order to see the percentage change for each team. The ones highlighted have the greatest percent changes</p>
-
-<div id="percentageChange">
-	
-	
-
-
-<div id="percentKey"></div>
+    <div id="percentageChange">
+        <div id="percentKey"></div>
 <script>
 	var percentKey = d3.select("#percentKey").append("svg").attr("width", 300).attr("height", 50);
 	percentKey.append("circle").attr("r", 5).attr("cx", 5).attr("cy", 5).style("fill", "#598fbc").style("opacity", "1");
@@ -39,7 +42,7 @@
 
 </script>
 
-</div>
+    </div>
 
 <script>
 
@@ -203,11 +206,14 @@ svg1.append("g").attr("transform", "translate(0, " + (height1 - padding1) + ")")
 svg1.append("g").attr("transform", "translate(" + padding1 + ",0)").attr("class", "axis").call(yAxis1).append("text").attr("transform", "rotate(-90)").style("text-anchor", "middle").attr("x", -height1/2).attr("y", -padding1/1.5).text("Percentage of Games Won");
 
 </script>
-
+    <h3> Are goals going up or down? </h3>
+    <p> "High scoring games are a thing of the past", my father told me not too long ago. It's something that I personally started to notice in the
+    past few seasons. So to test this theory, we plotted the average number of goals per game for each season. Interestingly, it appears that goals have made
+    subtle increase since 2001, but have been on the decline since the 2005-06 season.</p>
 <!-- The SVG element will go in here -->
-<div id="goalsGraph">
+    <div id="goalsGraph">
 
-</div>
+    </div>
 <script>
 
 var width = 750,
@@ -350,6 +356,36 @@ svg.append("g").attr("transform", "translate(" + padding + ",0)").attr("class", 
 
 </script>
 
+
+    <h3> Are the referees calling less penalties? </h3>
+    <p>While the game of hockey has gotten more violent as time has gone on, it seems like more of these "cheap shots" are
+    becoming the norm, as referees seem to have become desenitized to dirtier play, and are calling less penalties as a result.</p>
+    <p>To test this theory we plotted the number of Penalty Minutes per season, and we can definately see a downtrend.</p>
+    
+    <div id="PIMmins"></div>
+
+<script>
+var PIMsvg = d3.select("#PIMmins").append("svg")
+    .attr("width", 750)
+    .attr("height",520);
+
+var g = svg.append("g");
+var t0 = new Date(2001);
+var tEnd = new Date(2014);
+var parseDate = d3.time.format("%Y");
+var padding = 70;
+var xScale = d3.time.scale().domain([t0, tEnd]).range([padding, width - padding]);
+    
+d3.json("penaltyMins.json", function(error, data){
+    if (error) {
+		console.log(error);
+	}
+    for(var team_name in data){
+        
+    }
+});
+
+</script>
 <div id="stanelyCup">
 <h3>What predicts a Stanely Cup Winner?</h3>
 
